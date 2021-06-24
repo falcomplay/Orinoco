@@ -24,5 +24,4 @@ function ficheProduitTeddy(productSelected) {
     cloneElt.getElementById("card__title").textContent = productSelected.name
     //Publie tout les templates en fonction des produits
     document.getElementById("main").appendChild(cloneElt)
-
 }
