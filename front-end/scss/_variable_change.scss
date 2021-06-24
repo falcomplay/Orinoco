@@ -1,0 +1,38 @@
+@font-face {
+	font-family: "belligerent";
+	src: url("../font/belligerent-webfont.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+* {
+	color: black !important;
+	list-style: none !important;
+	text-decoration: none !important;
+	font-family: "belligerent" !important;
+}
+
+.bg_Orinoco {
+	background-color: #f3e9f1 !important;
+}
+
+.img-logo {
+	width: 30%;
+}
+
+.card-img-top {
+	width: 100%;
+	height: 15vw;
+	object-fit: cover;
+}
+
+.form-row {
+	display: flex;
+}
+
+// footer {
+// 	position: absolute;
+// 	bottom: 0;
+// 	width: 100%;
+// }
