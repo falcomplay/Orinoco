@@ -6,9 +6,11 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+
+    	<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" data-auto-a11y="true"></script>
 		<link rel="shortcut icon" type="image/png" href="#">
 		<link rel="stylesheet" href="css/style.css" />
-		<title>Accueil Orinoco</title>
+		<title>Product Orinoco</title>
 	</head>
 
 	<body>
@@ -25,7 +27,9 @@
 						<div id="navbarContent" class="collapse navbar-collapse">
 							<ul class="navbar-nav">
 								<li class="nav-item">
-									<a class="nav-link text-right" href="basket.html">Panier</a>
+									<a class="nav-link text-right" href="basket.html">
+										<i class="fas fa-shopping-basket me-2"></i>Panier <span>0</span>
+									</a>
 								</li>
 							</ul>
 						</div>
@@ -36,13 +40,23 @@
 
 		<!-- Hero -->
 
-            <div class="container  my-3">
-                <div class="row"  id="main">      
-					
-		<!-- JS créer la liste-->
+		<div class="container  my-3">
+			<div class="row"  id="main">      
+				
+	 <template class="col-12 col-lg-4" id="templateProduct">        
+	   <div class="card mb-4 mb-lg-0 bg_Orinoco">
+		   <img src="" alt="" class="card-img-top" id="card__img">
+		   <div class="card-body">
+		   <h3 class="card-title h5" id="card__title"></h3>
+		   <p class="card-text" id="card__price"></p>
+		   <a href="#" class="btn btn-primary btn-block stretched-link add_cart" data-action="card__link">Voir le produit</a>
+		   </div>
+	   </div>
+	 </template>
 
-                </div>
-            </div>
+
+			</div>
+		</div>
 
 		<!-- Footer -->
 
@@ -85,7 +99,8 @@
 
 		<!-- script créer -->
 
-		<script src="js/index.js"></script>
-
+		<script src="js/product.js"></script>
+		<script src="js/cart.js"></script>
+		
 	</body>
 </html>
