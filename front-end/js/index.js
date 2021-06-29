@@ -1,9 +1,11 @@
+onLoadCartNumbers(); 
+
 // Connection à l'api
 
 fetch("http://localhost:3000/api/teddies")
     //Formatage au format JSON
     .then(productsList => productsList.json())
-    //Récupération tableaux des produits
+    //Création cart des produits
     .then(productsList => {
         tableauProducts(productsList)
     })

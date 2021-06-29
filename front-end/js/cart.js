@@ -1,3 +1,4 @@
+
 //Bind the event to the parent table say it has an id of parentTable
 this.oTable= document.getElementById("main");    
 this.oTable.addEventListener("click", function(event){
@@ -7,6 +8,7 @@ this.oTable.addEventListener("click", function(event){
     cartNumbers();
    }
 });
+
 
 // Garde le nombre de produit dans le panier au refresh de la page
 function onLoadCartNumbers(){
@@ -31,5 +33,3 @@ function cartNumbers(){
         document.querySelector(".cart span").textContent = 1;
     }
 }
-
-onLoadCartNumbers()
