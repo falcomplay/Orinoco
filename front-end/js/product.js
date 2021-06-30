@@ -28,6 +28,7 @@ function ficheProductTeddy(productSelected) {
     cloneElt.getElementById("card__img").alt = `Image de ${productSelected.name}`
     cloneElt.getElementById("card__price").textContent = `${productSelected.price / 100}.00 €`
     cloneElt.getElementById("card__title").textContent = productSelected.name
+    cloneElt.getElementById("card__description").textContent = productSelected.description
     //Publie tout les templates en fonction des produits
     document.getElementById("main").appendChild(cloneElt)
 }

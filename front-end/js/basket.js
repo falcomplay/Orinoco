@@ -24,7 +24,6 @@ if (teddyBasket){
     divTeddyItemNone.classList.add("row", "p-0", "m-0", "align-items-center")
     const teddyBasketNoneContent = `
         <div class="col text-center">
-        <img src="img/sadTeddy.jpg" class="img-fluid">
         <p>Votre panier est vide... </p>
         <a href="index.html" class="btn btn-primary btn-block stretched-link">revenir à l'accueil</a>
         </div>`
@@ -34,7 +33,7 @@ if (teddyBasket){
 
 function ConstrusctionDuPanier(){
     i = 0
-    teddyTotalBasket = 0
+    productTotal = 0
     const teddyBasketItem = document.getElementById("teddiesBasketList")
     teddyBasket.forEach(teddyItem => {
         const divTeddyItem = document.createElement("div")
@@ -53,5 +52,18 @@ function ConstrusctionDuPanier(){
         divTeddyItem.innerHTML = teddyBasketItemContent
         teddyBasketItem.appendChild(divTeddyItem)
         i++
-        teddyTotalBasket= teddyTotalBasket + teddyItem.teddyPrice   
-    })}
+        productTotal = productTotal + teddyItem.teddyPrice   
+    })
+
+    // Total du panier
+
+    const productBasketTotal = document.getElementById("productsBasketTotal")
+        const divProductBasketTotal = document.createElement("div")
+        const productBasketTotalContain = 
+            `   <div class="col-6 p-0 m-0">pour un total de </div>
+                <div class="col-6 p-0 m-0 text-right">${productTotal}.00 €</div>`
+        divProductBasketTotal.innerHTML = productBasketTotalContain
+        productBasketTotal.appendChild(divProductBasketTotal)
+
+}
+
