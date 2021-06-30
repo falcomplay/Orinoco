@@ -44,7 +44,7 @@ function ConstrusctionDuPanier(){
                 <div class="col-5 col-md-4 p-1">1x ${teddyItem.teddyName}</div>
                 <div class="col-4 col-md-3 p-1">${teddyItem.teddyColor}</div>
                 <div class="col-2  p-1">${teddyItem.teddyPrice} €</div>
-                <div class="col-1  p-1 RemoveBtn" id="${i}">
+                <div class="col-1  p-1 RemoveProduct" id="${i}">
                     <button type="button" class="close text-danger" aria-label="Supprimer">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -55,7 +55,7 @@ function ConstrusctionDuPanier(){
         productTotal = productTotal + teddyItem.teddyPrice   
     })
 
-    // Total du panier
+    // Total basket
 
     const productBasketTotal = document.getElementById("productsBasketTotal")
         const divProductBasketTotal = document.createElement("div")
@@ -65,5 +65,24 @@ function ConstrusctionDuPanier(){
         divProductBasketTotal.innerHTML = productBasketTotalContain
         productBasketTotal.appendChild(divProductBasketTotal)
 
+
+    // Remove product
+
+    const RemoveProduct = document.getElementsByClassName("RemoveProduct")
+    for (let i = 0; i < RemoveProduct.length; i++) {
+        RemoveProduct[i].addEventListener("click", function(event){
+            event.preventDefault()
+            const DeleteId = this.closest(".RemoveProduct").id
+                    //on supprime l'article du localStorage
+                    teddyBasket.splice(DeleteId, 1)
+                    //on réécris le nouveau localstorage
+                    localStorage.setItem("addedTeddies", JSON.stringify(teddyBasket))
+                    JSON.parse(localStorage.getItem("addedTeddies"))
+                    //si c'est le dernier article, on supprime le localstorage
+                    if (RemoveProduct.length === 1) { localStorage.removeItem("adoptionTeddies") }
+                    //on recharge la page
+                    window.location.href = "basket.html"
+        })     
+    }
 }
 
