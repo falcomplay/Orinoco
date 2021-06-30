@@ -40,49 +40,44 @@
                <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputLastName">Nom</label>
-                        <input type="text" class="form-control" placeholder="Nom">
+                        <input type="text" class="form-control" placeholder="Nom" required>
                     </div> 
                     <div class="form-group col-md-6">
                         <label for="inputFirstName">Prénom</label>
-                        <input type="text" class="form-control" placeholder="Prénom">
+                        <input type="text" class="form-control" placeholder="Prénom" required>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col">
                     <label for="inputEmail4">Email</label>
-                    <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                    <input type="email" class="form-control" id="inputEmail4" placeholder="Email" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputAddress">Adresse</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="12 rue de la tarte">
+                    <input type="text" class="form-control" id="inputAddress" placeholder="12 rue de la tarte" required>
                 </div>
                 <div class="form-row">
                     <div class="form-group col col-md-6">
                     <label for="inputCity">Ville</label>
-                    <input type="text" class="form-control" id="inputCity">
+                    <input type="text" class="form-control" id="inputCity" required>
                     </div>
                     <div class="form-group col-md-4">
-                    <label for="inputState">Département</label>
-                    <select id="inputState" class="form-control">
-                        <option selected>Choifooter...</option>
-                        <option>...</option>
-                    </select>
                     </div>
                     <div class="form-group col-md-2">
                     <label for="inputZip">Zip</label>
-                    <input type="text" class="form-control" id="inputZip">
+                    <input type="text" class="form-control" id="inputZip" pattern="^[0-9]*$" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <input class="form-check-input" type="checkbox" id="gridCheck" required>
                     <label class="form-check-label" for="gridCheck">
                        J'accepte les conditions d'utilisation
                     </label>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Valider</button>
+                <button type="submit" id="btn-confirm" class="btn btn-primary">Valider</button>
             </form>
  
         </div>
@@ -125,5 +120,8 @@
 			integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 			crossorigin="anonymous"
 		></script>
+
+        <script src="js/confirm.js"></script>
+
 	</body>
 </html>
