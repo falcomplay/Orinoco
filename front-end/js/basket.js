@@ -41,7 +41,7 @@ function ConstrusctionDuPanier(){
         divTeddyItem.classList.add("row", "p-0", "m-1", "bg-light", "justify-content-between", "align-items-center")
         //console.log(teddyItem[i])
         const teddyBasketItemContent = `            
-                <div class="col-2 p-1 d-none d-sm-block"><img src="${teddyItem.teddyImageUrl.slice(-18)}" alt="${teddyItem.teddyName}" class="w-100 m-1"></div>
+                <div class="col-2 p-1 d-none d-sm-block"><img src="${teddyItem.teddyImageUrl}" alt="${teddyItem.teddyName}" class="w-100 m-1"></div>
                 <div class="col-5 col-md-4 p-1">1x ${teddyItem.teddyName}</div>
                 <div class="col-4 col-md-3 p-1">${teddyItem.teddyColor}</div>
                 <div class="col-2  p-1">${teddyItem.teddyPrice} €</div>

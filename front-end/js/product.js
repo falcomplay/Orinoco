@@ -11,12 +11,13 @@ if (id === null) { window.location.href = "index.html" }
 fetch("http://localhost:3000/api/teddies/" + id)
     .then(productSelected => productSelected.json())
     .then(productSelected => {
-        ficheProduitTeddy(productSelected)
+        ficheProductTeddy(productSelected)
+        colorProductOption(productSelected)
         addTeddy(productSelected)
     })
 
 // Construction DIV fiche produit teddy
-function ficheProduitTeddy(productSelected) {
+function ficheProductTeddy(productSelected) {
     const teddyCard = document.getElementById("product")
     //Récupère le template
     const templateElt = document.getElementById("templateProduct")
@@ -31,6 +32,20 @@ function ficheProduitTeddy(productSelected) {
     document.getElementById("main").appendChild(cloneElt)
 }
 
+// Choix des couleurs
+
+function colorProductOption(productSelected){
+    const productColors = productSelected.colors
+    const productColor = document.getElementById("productColor")
+    productColors.forEach( color => {
+        const colorOption = document.createElement("option")
+        colorOption.setAttribute("value",color)
+        colorOption.innerHTML = color
+        productColor.appendChild(colorOption)
+    })
+}
+
+
 // Ajout du produit dans le panier 
 
 function addTeddy(productSelected){
@@ -38,8 +53,8 @@ function addTeddy(productSelected){
     addProductToLocalStorage.addEventListener("click", function(event){
         event.preventDefault()
         teddyAdopted = {
-            teddyName: productSelected.name, 
-                        teddyColor: productSelected.value, 
+                        teddyName: productSelected.name, 
+                        teddyColor: productColor.value, 
                         teddyId: productSelected._id, 
                         teddyPrice: productSelected.price / 100,
                         teddyImageUrl: productSelected.imageUrl
