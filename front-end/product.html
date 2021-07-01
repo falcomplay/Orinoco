@@ -45,14 +45,16 @@
 				
 	 <template class="col-12 col-lg-4" id="templateProduct">        
 	   <div class="card mb-4 mb-lg-0 bg_Orinoco">
-		   <img src="" alt="" class="card-img-top" id="card__img">
+		   <img src="" alt="" class="w-full lg:w-1/2 md:min-w-1/2 h-full p-3" id="card__img">
 		   <div class="card-body">
-		   <h3 class="card-title h5" id="card__title"></h3>
-		   <p id="card__description"></p>
-		   <p class="card-text" id="card__price"></p>
-		   <select id="productColor" required></select>
-		   <a href="#" class="btn btn-primary btn-block" id="add-product" data-action="add_cart">Ajouter produit</a>
-		   </div>
+				<h2 class="card-title h3" id="card__title"></h2>
+				<p id="card__description"></p>
+				<div class="d-flex justify-content-around mt-4">
+					<select class="" id="productColor" required></select>
+					<p class="card-text h5" id="card__price"></p>
+					<a href="#" class="btn btn-Orinoco btn-block" id="add-product" data-action="add_cart"></a>
+				</div>
+			</div>
 	   </div>
 	 </template>
 
@@ -101,7 +103,7 @@
 
 		<!-- script créer -->
 
-		<script src="js/cart.js"></script>
+		<!-- <script src="js/cart.js"></script> -->
 		<script src="js/product.js"></script>
 		
 	</body>

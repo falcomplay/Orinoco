@@ -1,4 +1,4 @@
-onLoadCartNumbers(); 
+// onLoadCartNumbers(); 
 
 // Connection à l'api
 
@@ -28,7 +28,7 @@ function tableauProducts(productsList) {
               <div class="card-body">
               <h2 class="card-title h5">${productList.name}</h2>
               <p class="card-text">Prix : ${productList.price / 100}.00 €</p>
-              <a href="product.html?id=${productList._id}" class="btn btn-Orinoco btn-block stretched-link">Adopter ${productList.name} ?</a>
+              <a href="product.html?id=${productList._id}" class="btn btn-Orinoco btn-block stretched-link">Voir ${productList.name}</a>
               </div>
           </div>`
         mainProduct.appendChild(divProduct)

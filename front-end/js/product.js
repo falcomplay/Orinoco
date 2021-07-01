@@ -1,5 +1,5 @@
 
-onLoadCartNumbers(); 
+// onLoadCartNumbers(); 
 
 
 const queryString = window.location.search;
@@ -29,6 +29,7 @@ function ficheProductTeddy(productSelected) {
     cloneElt.getElementById("card__price").textContent = `${productSelected.price / 100}.00 €`
     cloneElt.getElementById("card__title").textContent = productSelected.name
     cloneElt.getElementById("card__description").textContent = productSelected.description
+    cloneElt.getElementById("add-product").textContent = `Ajouter ${productSelected.name} au panier`
     //Publie tout les templates en fonction des produits
     document.getElementById("main").appendChild(cloneElt)
 }
