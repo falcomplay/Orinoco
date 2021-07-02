@@ -86,3 +86,61 @@ function ConstrusctionDuPanier(){
     }
 }
 
+// Utilisation de l'API validation 
+
+document.getElementById("btn-confirm").addEventListener("click",function(){
+    var valid = true;
+    for(let input of document.querySelectorAll(".form-validate")){
+        valid &= input.checkValidity();
+        if(!valid){
+            break;
+        }
+    }
+    if(valid){
+        localStorage.setItem("amountSale", productTotal);
+    }
+})
+
+
+function sendOrder() {
+    const firstname = document.getElementById("firstName").value
+    const lastname = document.getElementById("lastName").value
+    const adress = document.getElementById("inputAddress").value
+    const zipcode = document.getElementById("inputZip").value
+    const email = document.getElementById("inputEmail4").value
+    const city = document.getElementById("inputCity").value
+    
+
+    const products = Object.values(Cart.products).map((product) => {
+      return product._id
+    })
+  
+    const order = {
+      contact: {
+        firstName: firstname,
+        lastName: lastname,
+        address: adress + ' ' + zipcode,
+        city: city,
+        email: email,
+      },
+      products: products,
+    }
+  
+    const requestOptions = {
+      method: 'POST',
+      body: JSON.stringify(order),
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+    }
+  
+    fetch(`http://localhost:3000/api/teddies/order`, requestOptions)
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json)
+        localStorage.removeItem('shoppingCart')
+        window.location.href = `${window.location.origin}/orderStatus.html?orderId=${json.orderId}`
+      })
+      .catch(() => {
+        alert(error)
+      })
+  }
+  
