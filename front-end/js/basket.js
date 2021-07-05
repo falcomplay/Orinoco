@@ -79,7 +79,7 @@ function ConstrusctionDuPanier(){
                     localStorage.setItem("addedTeddies", JSON.stringify(teddyBasket))
                     JSON.parse(localStorage.getItem("addedTeddies"))
                     //si c'est le dernier article, on supprime le localstorage
-                    if (RemoveProduct.length === 1) { localStorage.removeItem("adoptionTeddies") }
+                    if (RemoveProduct.length === 1) {localStorage.clear()}
                     //on recharge la page
                     window.location.href = "basket.html"
         })     
@@ -98,6 +98,8 @@ document.getElementById("btn-confirm").addEventListener("click",function(){
     }
     if(valid){
         localStorage.setItem("amountSale", productTotal);
+        sendOrder()
+        
     }
 })
 
@@ -110,21 +112,16 @@ function sendOrder() {
     const email = document.getElementById("inputEmail4").value
     const city = document.getElementById("inputCity").value
     
-
-    const products = Object.values(Cart.products).map((product) => {
-      return product._id
-    })
-  
     const order = {
       contact: {
         firstName: firstname,
         lastName: lastname,
-        address: adress + ' ' + zipcode,
+        address: adress + " " + zipcode,
         city: city,
         email: email,
-      },
-      products: products,
+      }
     }
+
   
     const requestOptions = {
       method: 'POST',
@@ -136,8 +133,8 @@ function sendOrder() {
       .then((response) => response.json())
       .then((json) => {
         console.log(json)
-        localStorage.removeItem('shoppingCart')
-        window.location.href = `${window.location.origin}/orderStatus.html?orderId=${json.orderId}`
+        localStorage.removeItem("addedTeddies")
+        document.location.href = "confirm.html";
       })
       .catch(() => {
         alert(error)
