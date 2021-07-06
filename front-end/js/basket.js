@@ -31,6 +31,7 @@ if (teddyBasket){
     teddyBasketNone.appendChild(divTeddyItemNone)
 }
 
+
 function ConstrusctionDuPanier(){
     i = 0
     productTotal = 0
