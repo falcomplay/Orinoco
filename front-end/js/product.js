@@ -42,7 +42,10 @@ const display = teddy => {
            <option value="2">2</option>
            <option value="3">3</option>
          </select>      
-               <a href="#" class="btn btn-Orinoco btn-block" id="add-product" data-action="add_cart">Ajouter au panier</a>
+          <div class="added-to-cart-confirmation">
+              <p class="confirmation-text"></p>
+          </div>
+            <a href="#" class="btn btn-Orinoco btn-block" id="add-product" data-action="add_cart">Ajouter au panier</a>
            </div>
        </div>
   </div>`;
@@ -53,11 +56,23 @@ const display = teddy => {
     `<option value="${colors}">${colors}</option>`
   }
 
+
+  const confirmation = document.querySelector(".added-to-cart-confirmation");
+  const textConfirmation = document.querySelector(".confirmation-text");
+  
+  function confirmationAdd(){
+    confirmation.style.visibility = "visible";
+    textConfirmation.innerHTML = `Vous avez ajouté ${teddy.quantity} nounours à votre panier !`;
+    setTimeout("location.reload(true);", 4000);
+  }
+
   // Event at click on the button
   document.getElementById("add-product").addEventListener("click", function () {
     addProductBasket(teddy)
+    confirmationAdd()
   });
 };
+
 
 // Add product to the basket
 const addProductBasket = teddy=> {
@@ -82,4 +97,5 @@ const addProductBasket = teddy=> {
     basket.push(teddy);
   };
   addLocalStorage(basket)
+  
 };

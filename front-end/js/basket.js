@@ -4,12 +4,12 @@ const h2Name = document.createElement("h2")
 h2Name.classList.add("h3", "text-center", "text-primary")
 if (teddyBasket){
     if (teddyBasket.length > 1) {
-        const h2Text = `Vous avez choisi ${teddyBasket.length} oursons.`
+        const h2Text = `Vous avez choisi ${teddyBasket.length} types d'oursons.`
         h2Name.innerHTML = h2Text
         teddyName.appendChild(h2Name)
         ConstrusctionDuPanier()
     } else if (teddyBasket.length == 1) {
-        const h2Text = `Vous avez choisi ${teddyBasket.length} ourson.`
+        const h2Text = `Vous avez choisi ${teddyBasket.length} type d'ourson.`
         h2Name.innerHTML = h2Text
         teddyName.appendChild(h2Name)
         ConstrusctionDuPanier()
@@ -42,8 +42,7 @@ function ConstrusctionDuPanier(){
         //console.log(teddyItem[i])
         const teddyBasketItemContent = `            
                 <div class="col-2 p-1 d-none d-sm-block"><img src="${teddyItem.imageUrl}" alt="${teddyItem.name}" class="w-100 m-1"></div>
-                <div class="col-5 col-md-4 p-1">1x ${teddyItem.name}</div>
-                <div class="col-4 col-md-3 p-1">${teddyItem.quantity}</div>
+                <div class="col-5 col-md-4 p-1">${teddyItem.quantity}x ${teddyItem.name}</div>
                 <div id="totalBasket" class="col-2  p-1">${teddyItem.quantity * teddyItem.price / 100} €</div>
                 <div class="col-1  p-1 RemoveProduct" id="${i}">
                     <button type="button" class="close text-danger" aria-label="Supprimer">
@@ -82,6 +81,7 @@ function ConstrusctionDuPanier(){
                     //si c'est le dernier article, on supprime le localstorage
                     if (RemoveProduct.length === 1) {localStorage.clear()}
                     //on recharge la page
+                    window.location.href = "basket.html"
         })     
     }
 }
@@ -97,6 +97,7 @@ function checkFormAndPostRequest() {
     let inputPostal = document.getElementById("inputZip")
     let inputMail = document.getElementById("inputEmail4")
     let inputCity = document.getElementById("inputCity")
+    let inputCheck = document.getElementById("gridCheck")
   
     // Lors d'un clic, si l'un des champs n'est pas rempli, on affiche une erreur, on empêche l'envoi du formulaire. On vérifie aussi que le numéro est un nombre, sinon même chose.
     submit.addEventListener("click", (e) => {
@@ -106,11 +107,9 @@ function checkFormAndPostRequest() {
         !inputPostal.value ||
         !inputCity.value ||
         !inputAdress.value ||
-        !inputMail.value
-      ) {
-        erreur.innerHTML = "Vous devez renseigner tous les champs !";
-        e.preventDefault();
-      } else {
+        !inputMail.value ||
+        !inputCheck.checked
+      ) {} else {
   
         // Si le formulaire est valide, le tableau productsBought contiendra un tableau d'objet qui sont les produits acheté, et order contiendra ce tableau ainsi que l'objet qui contient les infos de l'acheteur
         let productsBought = [];
@@ -138,7 +137,8 @@ function checkFormAndPostRequest() {
         // Envoie de la requête avec l'en-tête. On changera de page avec un localStorage qui ne contiendra plus que l'order id et le prix.
         fetch("http://localhost:3000/api/teddies/order", options)
           .then((response) => response.json())
-          .then((data) => {
+          .then((json)=> {
+            console.log(json)
             localStorage.clear();
             localStorage.setItem("amountSale", productTotal);
   
