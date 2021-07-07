@@ -12,7 +12,7 @@
 
 // // Garde le nombre de produit dans le panier au refresh de la page
 // function onLoadCartNumbers(){
-//     let productNumbers = localStorage.getItem("cartNumbers");
+//     let productNumbers = localStorage.getItem("basket");
 //     if(productNumbers){
 //         document.querySelector(".cart span").textContent = productNumbers;
 //     }
@@ -20,12 +20,12 @@
 
 // // Incrémente le nombre d'article
 // function cartNumbers(){
-//     let productNumbers = localStorage.getItem("cartNumbers");
+//     let productNumbers = localStorage.getItem("basket");
 
 //     productNumbers = parseInt(productNumbers);
 
 //     if(productNumbers){
-//         localStorage.setItem("cartNumbers", productNumbers + 1);
+//         localStorage.setItem("basket", productNumbers + 1);
 //         document.querySelector(".cart span").textContent = productNumbers + 1;
 //     }
 //     else {

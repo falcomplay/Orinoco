@@ -1,4 +1,4 @@
-const teddyBasket = JSON.parse(localStorage.getItem("addedTeddies"))
+const teddyBasket = JSON.parse(localStorage.getItem("basket"))
 const teddyName = document.getElementById("teddyH2Count")
 const h2Name = document.createElement("h2")
 h2Name.classList.add("h3", "text-center", "text-primary")
@@ -41,10 +41,10 @@ function ConstrusctionDuPanier(){
         divTeddyItem.classList.add("row", "p-0", "m-1", "bg-light", "justify-content-between", "align-items-center")
         //console.log(teddyItem[i])
         const teddyBasketItemContent = `            
-                <div class="col-2 p-1 d-none d-sm-block"><img src="${teddyItem.teddyImageUrl}" alt="${teddyItem.teddyName}" class="w-100 m-1"></div>
-                <div class="col-5 col-md-4 p-1">1x ${teddyItem.teddyName}</div>
-                <div class="col-4 col-md-3 p-1">${teddyItem.teddyColor}</div>
-                <div class="col-2  p-1">${teddyItem.teddyPrice} €</div>
+                <div class="col-2 p-1 d-none d-sm-block"><img src="${teddyItem.imageUrl}" alt="${teddyItem.name}" class="w-100 m-1"></div>
+                <div class="col-5 col-md-4 p-1">1x ${teddyItem.name}</div>
+                <div class="col-4 col-md-3 p-1">${teddyItem.quantity}</div>
+                <div class="col-2  p-1">${teddyItem.quantity * teddyItem.price / 100} €</div>
                 <div class="col-1  p-1 RemoveProduct" id="${i}">
                     <button type="button" class="close text-danger" aria-label="Supprimer">
                         <span aria-hidden="true">&times;</span>
@@ -53,7 +53,7 @@ function ConstrusctionDuPanier(){
         divTeddyItem.innerHTML = teddyBasketItemContent
         teddyBasketItem.appendChild(divTeddyItem)
         i++
-        productTotal = productTotal + teddyItem.teddyPrice   
+        productTotal = productTotal + teddyItem.quantity * teddyItem.price / 100
     })
 
     // Total basket
@@ -77,8 +77,8 @@ function ConstrusctionDuPanier(){
                     //on supprime l'article du localStorage
                     teddyBasket.splice(DeleteId, 1)
                     //on réécris le nouveau localstorage
-                    localStorage.setItem("addedTeddies", JSON.stringify(teddyBasket))
-                    JSON.parse(localStorage.getItem("addedTeddies"))
+                    localStorage.setItem("basket", JSON.stringify(teddyBasket))
+                    JSON.parse(localStorage.getItem("basket"))
                     //si c'est le dernier article, on supprime le localstorage
                     if (RemoveProduct.length === 1) {localStorage.clear()}
                     //on recharge la page
@@ -134,7 +134,7 @@ function sendOrder() {
       .then((response) => response.json())
       .then((json) => {
         console.log(json)
-        localStorage.removeItem("addedTeddies")
+        localStorage.removeItem("basket")
         document.location.href = "confirm.html";
       })
       .catch(() => {

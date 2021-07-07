@@ -1,63 +1,3 @@
-// // onLoadCartNumbers(); 
-
-
-// let params = (new URL(document.location)).searchParams;
-
-// //STOCK L ID 
-// const id = params.get("id");
-
-// fetch("http://localhost:3000/api/teddies/" + id)
-//     .then(response => response.json())
-//     .then(function (product) {
-//         let teddy = new Teddy(product)
-//         display(teddy);
-//     })
-//     //Gestion erreur
-//     .catch(function (error) {
-//         alert(error)
-//     });
-
-
-// //EMPLACEMENT HTML
-// let container = document.getElementById("main");
-
-// // FONCTION ENVOIE LOCAL STORAGE
-// const addLocalStorage = panier => {
-//   localStorage.setItem('panier', JSON.stringify(panier));
-// };
-
-// // INCLUS HTML
-// const display = teddy => {
-//   container.innerHTML +=`
-//     <div class="appareil" id="cardsProduct">
-//       <img src=${teddy.imageUrl} alt="">
-//       <div class="description"> 
-//         <p class="nom">${teddy.name}</p>
-//         <span class="appareil-description">
-//           ${teddy.description}
-//         </span>
-//         <select class="options" id ="option">
-//           <option>Choix options</option>
-//         </select>
-//         <p class="prix"> Prix Unitaire: ${teddy.price/ 100}€</p>
-//         <select class="quantite" id="quantity">           
-//           <option value="1">1</option>
-//           <option value="2">2</option>
-//           <option value="3">3</option>
-//         </select>         
-//         <a href ="../pages/panier.html"><button type ="submit" id="panier" value="submit"> Ajouter au panier</button></a>
-//       </div>
-//     </div>
-//   `;}
-
-
-
-
-
-
-
-
-
 //RECUPERATION DE L URL
 let params = (new URL(document.location)).searchParams;
 
@@ -69,7 +9,7 @@ let container = document.getElementById("main");
 
 // FONCTION ENVOIE LOCAL STORAGE
 const addLocalStorage = basket => {
-  localStorage.setItem('basket', JSON.stringify(basket));
+  localStorage.setItem("basket", JSON.stringify(basket));
 };
 
 // INCLUS HTML
@@ -82,51 +22,28 @@ const display = teddy => {
            <p id="card__description">${teddy.description}</p>
            <div class="d-flex justify-content-around mt-4">
            <select class="options" id ="option">
-           <option>Choix options</option>
          </select>
          <p class="prix"> Prix Unitaire: ${teddy.price/ 100}€</p>
-         <select class="quantite" id="quantity">           
+         <select id="quantity">           
            <option value="1">1</option>
            <option value="2">2</option>
            <option value="3">3</option>
          </select>      
-               <a href="#" class="btn btn-Orinoco btn-block" id="add-product" data-action="add_cart"></a>
+               <a href="#" class="btn btn-Orinoco btn-block" id="add-product" data-action="add_cart">Ajouter au panier</a>
            </div>
        </div>
   </div>
 
   `;
 
-    
-// // Construction DIV fiche produit teddy
-// function ficheProductTeddy(productSelected) {
-//     const teddyCard = document.getElementById("product")
-//     //Récupère le template
-//     const templateElt = document.getElementById("templateProduct")
-//     //Clone le template
-//     const cloneElt = document.importNode(templateElt.content, true)
-//     //Créer les templates
-//     cloneElt.getElementById("card__img").src = productSelected.imageUrl
-//     cloneElt.getElementById("card__img").alt = `Image de ${productSelected.name}`
-//     cloneElt.getElementById("card__price").textContent = `${productSelected.price / 100}.00 €`
-//     cloneElt.getElementById("card__title").textContent = productSelected.name
-//     cloneElt.getElementById("card__description").textContent = productSelected.description
-//     cloneElt.getElementById("add-product").textContent = `Ajouter ${productSelected.name} au panier`
-//     //Publie tout les templates en fonction des produits
-//     document.getElementById("main").appendChild(cloneElt)
-// }
-
-
-
-
-
   // CHOIX OPTIONS
-  for (let colors of basket.colors){
+  for (let colors of teddy.colors){
     document.getElementById("option").innerHTML+=
-    `<option value="1">${teddy.colors}</option>`
+    `<option value="${colors}">${colors}</option>`
   }
+
   // ECOUTE EVENEMENT AU CLICK + FNCT addProductBasket
-  document.getElementById("basket").addEventListener("click", function () {
+  document.getElementById("add-product").addEventListener("click", function () {
     addProductBasket(teddy)
   });
 };
@@ -136,14 +53,14 @@ const addProductBasket = teddy=> {
   teddy.quantity = parseInt(document.getElementById("quantity").value);
 
   //RECUPERE PANIER//memo : let variable=(condition)? "valeursi vrai": "valeur si faux"
-  let panier = localStorage.getItem("basket") ? JSON.parse(localStorage.getItem("basket")) : [];
+  let basket = localStorage.getItem("basket") ? JSON.parse(localStorage.getItem("basket")) : [];
 
   //BOUCLE FOR PARCOUR LIGNE PANIER
   let teddyExist = false;
   for (let i = 0; i < basket.length; i++) {
-    let product = panier[i];
+    let product = basket[i];
     //CONDITION CI PRODUIT EXISTE
-    if (product.id === camera.id) {
+    if (product.id === teddy.id) {
       teddyExist = i;
     }
   };
@@ -183,7 +100,23 @@ fetch("http://localhost:3000/api/teddies/" + id)
 
 
 
-
+// // Construction DIV fiche produit teddy
+// function ficheProductTeddy(productSelected) {
+//     const teddyCard = document.getElementById("product")
+//     //Récupère le template
+//     const templateElt = document.getElementById("templateProduct")
+//     //Clone le template
+//     const cloneElt = document.importNode(templateElt.content, true)
+//     //Créer les templates
+//     cloneElt.getElementById("card__img").src = productSelected.imageUrl
+//     cloneElt.getElementById("card__img").alt = `Image de ${productSelected.name}`
+//     cloneElt.getElementById("card__price").textContent = `${productSelected.price / 100}.00 €`
+//     cloneElt.getElementById("card__title").textContent = productSelected.name
+//     cloneElt.getElementById("card__description").textContent = productSelected.description
+//     cloneElt.getElementById("add-product").textContent = `Ajouter ${productSelected.name} au panier`
+//     //Publie tout les templates en fonction des produits
+//     document.getElementById("main").appendChild(cloneElt)
+// }
 
 // // Choix des couleurs
 
@@ -248,5 +181,63 @@ fetch("http://localhost:3000/api/teddies/" + id)
 //   };
 //   addLocalStorage(basket)
 // };
+
+// // onLoadCartNumbers(); 
+
+
+// let params = (new URL(document.location)).searchParams;
+
+// //STOCK L ID 
+// const id = params.get("id");
+
+// fetch("http://localhost:3000/api/teddies/" + id)
+//     .then(response => response.json())
+//     .then(function (product) {
+//         let teddy = new Teddy(product)
+//         display(teddy);
+//     })
+//     //Gestion erreur
+//     .catch(function (error) {
+//         alert(error)
+//     });
+
+
+// //EMPLACEMENT HTML
+// let container = document.getElementById("main");
+
+// // FONCTION ENVOIE LOCAL STORAGE
+// const addLocalStorage = panier => {
+//   localStorage.setItem('panier', JSON.stringify(panier));
+// };
+
+// // INCLUS HTML
+// const display = teddy => {
+//   container.innerHTML +=`
+//     <div class="appareil" id="cardsProduct">
+//       <img src=${teddy.imageUrl} alt="">
+//       <div class="description"> 
+//         <p class="nom">${teddy.name}</p>
+//         <span class="appareil-description">
+//           ${teddy.description}
+//         </span>
+//         <select class="options" id ="option">
+//           <option>Choix options</option>
+//         </select>
+//         <p class="prix"> Prix Unitaire: ${teddy.price/ 100}€</p>
+//         <select class="quantite" id="quantity">           
+//           <option value="1">1</option>
+//           <option value="2">2</option>
+//           <option value="3">3</option>
+//         </select>         
+//         <a href ="../pages/panier.html"><button type ="submit" id="panier" value="submit"> Ajouter au panier</button></a>
+//       </div>
+//     </div>
+//   `;}
+
+
+
+
+
+
 
 
