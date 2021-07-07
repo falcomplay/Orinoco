@@ -29,6 +29,9 @@ fetch("http://localhost:3000/api/teddies/" + id)
 const display = teddy => {
   container.innerHTML +=`  
   <div class="card mb-4 mb-lg-0 bg_Orinoco">
+      <div class="addCartConfirmation">
+            <p class="confirmation-text"></p>
+      </div>
       <img src="${teddy.imageUrl}" alt="${teddy.name}" class="w-full lg:w-1/2 md:min-w-1/2 h-full p-3" id="card__img">
       <div class="card-body">
            <h2 class="card-title h3" id="card__title">${teddy.name}</h2>
@@ -42,7 +45,7 @@ const display = teddy => {
            <option value="2">2</option>
            <option value="3">3</option>
          </select>      
-          <div class="added-to-cart-confirmation">
+          <div class="addCartConfirmation">
               <p class="confirmation-text"></p>
           </div>
             <a href="#" class="btn btn-Orinoco btn-block" id="add-product" data-action="add_cart">Ajouter au panier</a>
@@ -57,12 +60,18 @@ const display = teddy => {
   }
 
 
-  const confirmation = document.querySelector(".added-to-cart-confirmation");
+  const confirmation = document.querySelector(".addCartConfirmation");
   const textConfirmation = document.querySelector(".confirmation-text");
   
   function confirmationAdd(){
     confirmation.style.visibility = "visible";
-    textConfirmation.innerHTML = `Vous avez ajouté ${teddy.quantity} nounours à votre panier !`;
+    textConfirmation.innerHTML = `  					
+    <div class="alert alert-success alert-dismissible mt-3 fade show" role="alert">
+    <h5 class="alert-heading">Vous avez ajouté ${teddy.quantity} nounours à votre panier !</h5>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>`;
     setTimeout("location.reload(true);", 4000);
   }
 
