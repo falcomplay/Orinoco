@@ -1,35 +1,15 @@
+//Building basket link with counter
 
-// //Bind the event to the parent table say it has an id of parentTable
-// this.oTable= document.getElementById("main");    
-// this.oTable.addEventListener("click", function(event){
-//    //check the button was clicked
-//    if(event.target.dataset.action === "add_cart")
-//    {
-//     cartNumbers();
-//    }
-// });
-
-
-// // Garde le nombre de produit dans le panier au refresh de la page
-// function onLoadCartNumbers(){
-//     let productNumbers = localStorage.getItem("basket");
-//     if(productNumbers){
-//         document.querySelector(".cart span").textContent = productNumbers;
-//     }
-// }
-
-// // Incrémente le nombre d'article
-// function cartNumbers(){
-//     let productNumbers = localStorage.getItem("basket");
-
-//     productNumbers = parseInt(productNumbers);
-
-//     if(productNumbers){
-//         localStorage.setItem("basket", productNumbers + 1);
-//         document.querySelector(".cart span").textContent = productNumbers + 1;
-//     }
-//     else {
-//         localStorage.setItem("cartNumbers", 1);
-//         document.querySelector(".cart span").textContent = 1;
-//     }
-// }
+function basketCounter(){
+    const teddyBasket = JSON.parse(localStorage.getItem("basket"))
+    const basketCount = document.getElementById("cart")
+    const basketLink = document.createElement("a")
+    basketLink.classList.add("nav-link", "text-primary", "h5")
+    basketLink.setAttribute("href", "basket.html")
+    if (teddyBasket){
+        basketLink.innerHTML = `Panier <span class="badge badge-pill badge-dark text-light">${teddyBasket.length}</span>`
+    } else{
+        basketLink.innerHTML = `Panier <span class="badge badge-pill badge-dark text-light">0</span>`
+    }
+    basketCount.appendChild(basketLink)
+}

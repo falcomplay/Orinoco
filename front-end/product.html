@@ -16,27 +16,21 @@
 	<body>
 		<!-- Header -->
 
-		<div class="bg_Orinoco">
-			<div class="container">
+		<header class="bg_Orinoco">
+			<div class="container py-2">
 				<div class="row">
-					<nav class="col navbar navbar-expand-lg">
+					<nav class="navbar">
 						<a class="navbar-brand" href="index.html"><img src="img/logo.png" class="img-logo" alt="Site logo" /></a>
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-						<div id="navbarContent" class="collapse navbar-collapse">
+						<div id="navbarContent">
 							<ul class="navbar-nav">
-								<li class="nav-item cart">
-									<a class="nav-link text-right" href="basket.html">
-										<i class="fas fa-shopping-basket me-2"></i>Panier <span>0</span>
-									</a>
-								</li>
+								<li class="nav-item" id="cart"><!-- JS --></li>
 							</ul>
 						</div>
 					</nav>
 				</div>
 			</div>
-		</div>
+		</header>
+
 
 		<!-- Hero -->
 
@@ -89,6 +83,7 @@
 
 		<!-- <script src="js/cart.js"></script> -->
 		<script src="js/constructor.js"></script>
+		<script src="js/cart.js"></script>
 		<script src="js/product.js"></script>
 		
 	</body>

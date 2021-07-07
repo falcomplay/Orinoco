@@ -1,6 +1,4 @@
-// onLoadCartNumbers(); 
-
-// Connection à l'api
+basketCounter()
 
 fetch("http://localhost:3000/api/teddies")
     //Formatage au format JSON

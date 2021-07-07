@@ -1,10 +1,8 @@
-// récupération de l'id de la commande
-const numberSale = localStorage.getItem("amountSale");
-// récupération du prix total de la commande
+
 const montantCommande = localStorage.getItem("amountSale");
-//Si aucunes données dans le localstorage alors on redirige vers l'accueil
-// if (!numeroCommande && !montantCommande){window.location.href= "index.html"}
-//Construction DIV récapitulatif de commande
+
+const numberSale = `${montantCommande}cmdtosend`
+
 const summarySale = document.getElementById("summarySale")
 const recapDiv = document.createElement("div")
 recapDiv.innerHTML = `
