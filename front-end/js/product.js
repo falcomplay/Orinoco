@@ -16,13 +16,14 @@ const addLocalStorage = basket => {
 // Call API
 fetch("http://localhost:3000/api/teddies/" + id)
   .then(response => response.json())
+  //Create frame for the teddy link with the id
   .then(function (product) {
     let teddy = new Teddy(product)
     display(teddy);
   })
-  .catch(function(err){
-  console.log("fetch Error")
-});
+  .catch((err) => {
+    alert("Impossible de se connecter aux produits! " + err);
+  });
 
 
 // Display of the product

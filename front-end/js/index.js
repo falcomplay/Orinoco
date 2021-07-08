@@ -12,9 +12,9 @@ fetch("http://localhost:3000/api/teddies")
 
     })
     //Error case
-    .catch(function (error) {
-        alert(error)
-    });
+    .catch((err) => {
+        alert("Impossible de se connecter aux produits! " + err);
+      });
 
 const mainProduct = document.getElementById("main")
 

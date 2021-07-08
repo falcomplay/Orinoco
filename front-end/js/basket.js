@@ -91,8 +91,8 @@ function checkFormAndPostRequest() {
 
     // On récupère les inputs depuis le DOM.
     let submit = document.getElementById("sendForm");
-    let inputName = document.getElementById("firstName")
-    let inputLastName = document.getElementById("lastName")
+    let inputName = document.getElementById("inputFirstName")
+    let inputLastName = document.getElementById("inputLastName")
     let inputAdress = document.getElementById("inputAddress")
     let inputPostal = document.getElementById("inputZip")
     let inputMail = document.getElementById("inputEmail4")
@@ -146,126 +146,11 @@ function checkFormAndPostRequest() {
             document.location.href = "confirm.html";
           })
           .catch((err) => {
-            alert("Il y a eu une erreur : " + err);
+            alert("Votre panier est vide ! " + err);
           });
       }
     });
   }
   
-
   checkFormAndPostRequest()
-
-//     const firstname = document.getElementById("firstName").value
-//     const lastname = document.getElementById("lastName").value
-//     const adress = document.getElementById("inputAddress").value
-//     const zipcode = document.getElementById("inputZip").value
-//     const email = document.getElementById("inputEmail4").value
-//     const city = document.getElementById("inputCity").value
-    
-// document.getElementById("sendForm").addEventListener("click",function(){
-//     {
-
-//       // Si le formulaire est valide, le tableau productsBought contiendra un tableau d'objet qui sont les produits acheté, et order contiendra ce tableau ainsi que l'objet qui contient les infos de l'acheteur
-//       let productsBought = [];
-//       productsBought.push(teddyBasket);
-
-//           const order = {
-//             contact: {
-//                 firstName: firstname,
-//                 lastName: lastname,
-//                 address: adress + " " + zipcode,
-//                 city: city,
-//                 email: email,
-//             },
-//             products: productsBought,
-//             };
-
-
-//       // -------  Envoi de la requête POST au back-end --------
-//       // Création de l'entête de la requête
-//       const options = {
-//         method: "POST",
-//         body: JSON.stringify(order),
-//         headers: { "Content-Type": "application/json" },
-//       };
-
-//       // Préparation du prix formaté pour l'afficher sur la prochaine page
-//       let priceConfirmation = document.getElementById("total").innerText;
-//       priceConfirmation = priceConfirmation.split(" :");
-
-//       // Envoie de la requête avec l'en-tête. On changera de page avec un localStorage qui ne contiendra plus que l'order id et le prix.
-//       fetch("http://localhost:3000/api/teddies/order", options)
-//         .then((response) => response.json())
-//         .then((data) => {
-//           localStorage.clear();
-//           localStorage.setItem("orderId", data.orderId);
-//           localStorage.setItem("total", priceConfirmation[1]);
-
-//           //  On peut commenter cette ligne pour vérifier le statut 201 de la requête fetch. Le fait de préciser la destination du lien ici et non dans la balise <a> du HTML permet d'avoir le temps de placer les éléments comme l'orderId dans le localStorage avant le changement de page.
-//           document.location.href = "confirmation.html";
-//         })
-//         .catch((err) => {
-//           alert("Il y a eu une erreur : " + err);
-//         });
-//     }
-//   });
-
-
-
-
-// // function sendOrder() {
-// //     let form = document.getElementById("form");
-// //     if (form.reportValidity() == true && teddyBasket.length>0) {
-// //     const firstname = document.getElementById("firstName").value
-// //     const lastname = document.getElementById("lastName").value
-// //     const adress = document.getElementById("inputAddress").value
-// //     const zipcode = document.getElementById("inputZip").value
-// //     const email = document.getElementById("inputEmail4").value
-// //     const city = document.getElementById("inputCity").value
-    
-// //     const order = {
-// //       contact: {
-// //         firstName: firstname,
-// //         lastName: lastname,
-// //         address: adress + " " + zipcode,
-// //         city: city,
-// //         email: email,
-// //       }
-// //     }
-
-  
-// //     const requestOptions = {
-// //       method: 'POST',
-// //       body: JSON.stringify(order),
-// //       headers: { 'Content-Type': 'application/json; charset=utf-8' },
-// //     }
-  
-// //     fetch(`http://localhost:3000/api/teddies/order`, requestOptions)
-// //       .then((response) => response.json())
-// //       .then((json) => {
-// //         console.log(json)
-// //         localStorage.removeItem("basket")
-// //       })
-// //       .catch(() => {
-// //         alert(error)
-// //       })
-// //   }
-// // }
-
-// // // Utilisation de l'API validation 
-
-// // document.getElementById("sendForm").addEventListener("click",function(){
-// //     var valid = true;
-// //     for(let input of document.querySelectorAll(".form-validate")){
-// //         valid &= input.checkValidity();
-// //         if(!valid){
-// //             break;
-// //         }
-// //     }
-// //     if(valid){
-// //         localStorage.setItem("amountSale", montantCommande);
-// //         sendOrder()
-        
-// //     }
-// // })
 
