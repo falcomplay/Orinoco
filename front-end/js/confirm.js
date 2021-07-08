@@ -5,8 +5,9 @@ const numberSale = `${montantCommande}cmdtosend`
 
 const summarySale = document.getElementById("summarySale")
 const recapDiv = document.createElement("div")
+recapDiv.classList.add("col-lg-6")
 recapDiv.innerHTML = `
-<div class="card mb-4 mb-lg-0 justify-content-center border-primary shadow">
+<div class="card mb-4 mb-lg-0 justify-content-center border-Orinoco shadow">
 <h3 class="card-header text-center h5">Merci de votre confiance !</h3>
 <div class="card-body">
     <h4 class="h6">Nous vous confirmons votre achat.</h4>

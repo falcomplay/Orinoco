@@ -24,8 +24,12 @@
 	}
 }
 
+.border-Orinoco {
+	border-color: #c985ac !important;
+}
+
 .img-logo {
-	width: 30%;
+	width: 38%;
 }
 
 .card-img-top {
@@ -38,6 +42,24 @@
 	display: flex;
 }
 
+.imgsize {
+	@media screen and (max-width: 992px) {
+		height: 100%;
+	}
+}
+
+.optionForm {
+	max-height: 2rem;
+	margin: 0.2rem;
+}
+
+.text-price {
+	margin: 0;
+}
+.form-group {
+	margin-right: 1rem;
+	margin-bottom: 10px;
+}
 // footer {
 // 	position: absolute;
 // 	bottom: 0;

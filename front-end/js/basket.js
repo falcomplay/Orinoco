@@ -1,38 +1,38 @@
 const teddyBasket = JSON.parse(localStorage.getItem("basket"))
 const teddyName = document.getElementById("teddyH2Count")
 const h2Name = document.createElement("h2")
-h2Name.classList.add("h3", "text-center", "text-primary")
+h2Name.classList.add("h3", "text-center")
+// Building header basket
 if (teddyBasket){
     if (teddyBasket.length > 1) {
         const h2Text = `Vous avez choisi ${teddyBasket.length} types d'oursons.`
         h2Name.innerHTML = h2Text
         teddyName.appendChild(h2Name)
-        ConstrusctionDuPanier()
+        buildingBasket()
     } else if (teddyBasket.length == 1) {
         const h2Text = `Vous avez choisi ${teddyBasket.length} type d'ourson.`
         h2Name.innerHTML = h2Text
         teddyName.appendChild(h2Name)
-        ConstrusctionDuPanier()
+        buildingBasket()
     }
-} else {
+} else { // If the basket is empty
     const h2Text = `Vous n'avez pas choisi d'ourson.`
     h2Name.innerHTML = h2Text
     teddyName.appendChild(h2Name)
-    //Construction d'un panier vide...
     const teddyBasketNone = document.getElementById("teddiesBasketList")
     const divTeddyItemNone = document.createElement("div")
     divTeddyItemNone.classList.add("row", "p-0", "m-0", "align-items-center")
     const teddyBasketNoneContent = `
         <div class="col text-center">
         <p>Votre panier est vide... </p>
-        <a href="index.html" class="btn btn-primary btn-block stretched-link">revenir à l'accueil</a>
+        <a href="index.html" class="btn btn-Orinoco btn-block stretched-link">revenir à l'accueil</a>
         </div>`
     divTeddyItemNone.innerHTML = teddyBasketNoneContent
     teddyBasketNone.appendChild(divTeddyItemNone)
 }
 
-
-function ConstrusctionDuPanier(){
+// Building 
+function buildingBasket(){
     i = 0
     productTotal = 0
     const teddyBasketItem = document.getElementById("teddiesBasketList")

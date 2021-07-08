@@ -32,15 +32,15 @@ const display = teddy => {
       <div class="addCartConfirmation">
             <p class="confirmation-text"></p>
       </div>
-      <img src="${teddy.imageUrl}" alt="${teddy.name}" class="w-full lg:w-1/2 md:min-w-1/2 h-full p-3" id="card__img">
+      <img src="${teddy.imageUrl}" alt="${teddy.name}" class="w-full lg:w-1/2 md:min-w-1/2 h-full p-3 img-fluid" id="card__img">
       <div class="card-body">
            <h2 class="card-title h3" id="card__title">${teddy.name}</h2>
            <p id="card__description">${teddy.description}</p>
-           <div class="d-flex justify-content-around mt-4">
-           <select class="options" id ="option">
-         </select>
-         <p class="prix"> Prix Unitaire: ${teddy.price/ 100}€</p>
-         <select id="quantity">           
+          <div class="d-flex justify-content-around align-items-center mt-4">
+          <select class="options optionForm" id ="option">
+          </select>
+         <p class="p-1 text-price"> Prix /u : ${teddy.price/ 100}€</p>
+         <select class="optionForm" id="quantity">           
            <option value="1">1</option>
            <option value="2">2</option>
            <option value="3">3</option>
@@ -67,10 +67,7 @@ const display = teddy => {
     confirmation.style.visibility = "visible";
     textConfirmation.innerHTML = `  					
     <div class="alert alert-success alert-dismissible mt-3 fade show" role="alert">
-    <h5 class="alert-heading">Vous avez ajouté ${teddy.quantity} nounours à votre panier !</h5>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">×</span>
-    </button>
+    <h5 class="alert-heading">Vous avez ajouté ${teddy.quantity} nounours au panier !</h5>
   </div>`;
     setTimeout("location.reload(true);", 4000);
   }
