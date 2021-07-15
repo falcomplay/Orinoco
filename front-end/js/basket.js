@@ -1,8 +1,9 @@
-const teddyBasket = JSON.parse(localStorage.getItem("basket"))
+let teddyBasket = JSON.parse(localStorage.getItem("basket"))
+//Build basket's header
 const teddyName = document.getElementById("teddyH2Count")
 const h2Name = document.createElement("h2")
 h2Name.classList.add("h3", "text-center")
-// Building header basket
+let addIdBasket = []
 if (teddyBasket){
     if (teddyBasket.length > 1) {
         const h2Text = `Vous avez choisi ${teddyBasket.length} types d'oursons.`
@@ -50,9 +51,14 @@ function buildingBasket(){
                 </div>`
         divTeddyItem.innerHTML = teddyBasketItemContent
         teddyBasketItem.appendChild(divTeddyItem)
-        i++
-        productTotal = productTotal + teddyItem.quantity * teddyItem.price / 100
+        productTotal = productTotal + teddyItem.quantity * teddyItem.price / 100;
+        for (let i = 0; i < teddyItem.quantity; i++) {
+        addIdBasket.push(teddyItem.id);
+        localStorage.setItem("amountSale", productTotal);
+        }
     })
+}
+
 
     // Total basket
 
@@ -82,68 +88,55 @@ function buildingBasket(){
                     window.location.href = "basket.html"
         })     
     }
-}
-
-
-function checkFormAndPostRequest() {
-
-    // Input from the dom
-    let submit = document.getElementById("sendForm");
-    let inputName = document.getElementById("inputFirstName")
-    let inputLastName = document.getElementById("inputLastName")
-    let inputAdress = document.getElementById("inputAddress")
-    let inputPostal = document.getElementById("inputZip")
-    let inputMail = document.getElementById("inputEmail4")
-    let inputCity = document.getElementById("inputCity")
-    let inputCheck = document.getElementById("gridCheck")
-
-    // At the click, check if all value are correctly fill
-    submit.addEventListener("click", (e) => {
-      if (
-        !inputName.value ||
-        !inputLastName.value ||
-        !inputPostal.value ||
-        !inputCity.value ||
-        !inputAdress.value ||
-        !inputMail.value ||
-        !inputCheck.checked
-      ) {} else {
+// Setup form
+// Input from the dom
+function sendOrder() {
+    let form = document.getElementById("form");
+    if (form.reportValidity() == true && addIdBasket.length>0) {
+      let contact = {
+        'firstName': document.getElementById("inputFirstName").value,
+        'lastName': document.getElementById("inputLastName").value,
+        'address': document.getElementById("inputAddress").value,
+        'city': document.getElementById("inputCity").value,
+        'email': document.getElementById("inputEmail4").value
+      };
+      let products = addIdBasket;
   
-        // If the form is correct create contact 
-        let productsBought = [];
-        productsBought.push(teddyBasket);
+      let formulaireClient = JSON.stringify({
+        contact,
+        products
+      });
   
-        const order = {
-          contact: {
-            firstName: inputName.value,
-            lastName: inputLastName.value,
-            city: inputCity.value,
-            address: inputAdress.value,
-            email: inputMail.value,
-          },
-          products: productsBought,
-        };
-  
-        // Send post request to the back-end
-        const options = {
-          method: "POST",
-          body: JSON.stringify(order),
-          headers: { "Content-Type": "application/json" },
-        };
-        fetch("http://localhost:3000/api/teddies/order", options)
-          .then((response) => response.json())
-          .then((json)=> {
-            console.log(json)
-            localStorage.clear();
-            localStorage.setItem("amountSale", productTotal);
-            document.location.href = "confirm.html";
-          })
-          .catch((err) => {
-            alert("Votre panier est vide ou une erreur est survenu " + err);
-          });
-      }
-    });
+     // Send post request to the back-end
+      fetch('http://localhost:3000/api/teddies/order', {
+        method: 'POST',
+        headers: {
+          'content-type': "application/json"
+        },
+        mode: "cors",
+        body: formulaireClient
+        })
+        .then(function (response) {
+          return response.json()
+        })
+        .then(function (r) {
+          localStorage.setItem("contact", JSON.stringify(r.contact));
+          localStorage.setItem("numberSale", JSON.stringify(r.orderId));
+          window.location = "confirm.html"
+        })
+        //If error
+        .catch(function (err) {
+          console.log("fetch Error");
+        });
+    }
+    else{
+      alert(" Une erreur est survenue votre panier est peux étre vide ou le formulaire n'a pas été correctement rempli!")
+    };
   }
   
-  checkFormAndPostRequest()
-
+  let envoiFormulaire = document.getElementById("sendForm");
+  
+  envoiFormulaire.addEventListener('click', function (event) {
+    event.preventDefault();
+    sendOrder();
+  });

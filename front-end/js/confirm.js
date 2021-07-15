@@ -1,7 +1,7 @@
 
 const amountCommand = localStorage.getItem("amountSale");
 
-const numberSale = `$--${amountCommand}-cmdtosend`
+const numberSale = localStorage.getItem("numberSale");
 
 const summarySale = document.getElementById("summarySale")
 const recapDiv = document.createElement("div")
