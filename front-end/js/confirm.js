@@ -1,7 +1,7 @@
 
-const montantCommande = localStorage.getItem("amountSale");
+const amountCommand = localStorage.getItem("amountSale");
 
-const numberSale = `${montantCommande}cmdtosend`
+const numberSale = `$--${amountCommand}-cmdtosend`
 
 const summarySale = document.getElementById("summarySale")
 const recapDiv = document.createElement("div")
@@ -23,7 +23,7 @@ recapDiv.innerHTML = `
     </div>
     <div class="row">
         <div class="col-sm-4 col-md-3">Montant :</div>
-        <div class="col"><small>${montantCommande}.00 €</small></div> 
+        <div class="col"><small>${amountCommand}.00 €</small></div> 
     </div>
 </div>
 <div class="card-footer">

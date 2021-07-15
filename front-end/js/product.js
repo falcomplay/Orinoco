@@ -85,7 +85,7 @@ const display = teddy => {
 const addProductBasket = teddy=> {
   teddy.quantity = parseInt(document.getElementById("quantity").value);
 
-  // Fetch basket on local storage //memo : let variable=(condition)? "valeursi vrai": "valeur si faux"
+  // Fetch basket on local storage //memo : let variable=(condition)? "value if true": "value if wrong"
   let basket = localStorage.getItem("basket") ? JSON.parse(localStorage.getItem("basket")) : [];
 
   // Increment product

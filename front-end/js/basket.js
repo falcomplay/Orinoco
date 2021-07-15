@@ -39,7 +39,6 @@ function buildingBasket(){
     teddyBasket.forEach(teddyItem => {
         const divTeddyItem = document.createElement("div")
         divTeddyItem.classList.add("row", "p-0", "m-1", "bg-light", "justify-content-between", "align-items-center")
-        //console.log(teddyItem[i])
         const teddyBasketItemContent = `            
                 <div class="col-2 p-1 d-none d-sm-block"><img src="${teddyItem.imageUrl}" alt="${teddyItem.name}" class="w-100 m-1"></div>
                 <div class="col-5 col-md-4 p-1">${teddyItem.quantity}x ${teddyItem.name}</div>
@@ -73,14 +72,13 @@ function buildingBasket(){
         RemoveProduct[i].addEventListener("click", function(event){
             event.preventDefault()
             const DeleteId = this.closest(".RemoveProduct").id
-                    //on supprime l'article du localStorage
+                    //Remove article from local storage
                     teddyBasket.splice(DeleteId, 1)
-                    //on réécris le nouveau localstorage
+                    //new localstorage
                     localStorage.setItem("basket", JSON.stringify(teddyBasket))
                     JSON.parse(localStorage.getItem("basket"))
-                    //si c'est le dernier article, on supprime le localstorage
+                    //If last item clear local storage
                     if (RemoveProduct.length === 1) {localStorage.clear()}
-                    //on recharge la page
                     window.location.href = "basket.html"
         })     
     }
@@ -89,7 +87,7 @@ function buildingBasket(){
 
 function checkFormAndPostRequest() {
 
-    // On récupère les inputs depuis le DOM.
+    // Input from the dom
     let submit = document.getElementById("sendForm");
     let inputName = document.getElementById("inputFirstName")
     let inputLastName = document.getElementById("inputLastName")
@@ -98,8 +96,8 @@ function checkFormAndPostRequest() {
     let inputMail = document.getElementById("inputEmail4")
     let inputCity = document.getElementById("inputCity")
     let inputCheck = document.getElementById("gridCheck")
-  
-    // Lors d'un clic, si l'un des champs n'est pas rempli, on affiche une erreur, on empêche l'envoi du formulaire. On vérifie aussi que le numéro est un nombre, sinon même chose.
+
+    // At the click, check if all value are correctly fill
     submit.addEventListener("click", (e) => {
       if (
         !inputName.value ||
@@ -111,7 +109,7 @@ function checkFormAndPostRequest() {
         !inputCheck.checked
       ) {} else {
   
-        // Si le formulaire est valide, le tableau productsBought contiendra un tableau d'objet qui sont les produits acheté, et order contiendra ce tableau ainsi que l'objet qui contient les infos de l'acheteur
+        // If the form is correct create contact 
         let productsBought = [];
         productsBought.push(teddyBasket);
   
@@ -126,27 +124,22 @@ function checkFormAndPostRequest() {
           products: productsBought,
         };
   
-        // -------  Envoi de la requête POST au back-end --------
-        // Création de l'entête de la requête
+        // Send post request to the back-end
         const options = {
           method: "POST",
           body: JSON.stringify(order),
           headers: { "Content-Type": "application/json" },
         };
-  
-        // Envoie de la requête avec l'en-tête. On changera de page avec un localStorage qui ne contiendra plus que l'order id et le prix.
         fetch("http://localhost:3000/api/teddies/order", options)
           .then((response) => response.json())
           .then((json)=> {
             console.log(json)
             localStorage.clear();
             localStorage.setItem("amountSale", productTotal);
-  
-            //  On peut commenter cette ligne pour vérifier le statut 201 de la requête fetch. Le fait de préciser la destination du lien ici et non dans la balise <a> du HTML permet d'avoir le temps de placer les éléments comme l'orderId dans le localStorage avant le changement de page.
             document.location.href = "confirm.html";
           })
           .catch((err) => {
-            alert("Votre panier est vide ! " + err);
+            alert("Votre panier est vide ou une erreur est survenu " + err);
           });
       }
     });
