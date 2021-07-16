@@ -31,5 +31,5 @@ recapDiv.innerHTML = `
 </div>
 </div>`
 summarySale.appendChild(recapDiv)
-//on vide le localstorage
+// Clear local.storage 
 localStorage.clear()

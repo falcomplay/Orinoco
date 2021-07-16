@@ -100,13 +100,11 @@ function sendOrder() {
         'city': document.getElementById("inputCity").value,
         'email': document.getElementById("inputEmail4").value
       };
-      let products = addIdBasket;
-  
-      let formulaireClient = JSON.stringify({
+      let products = addIdBasket; 
+      let formCustomer = JSON.stringify({
         contact,
         products
       });
-  
      // Send post request to the back-end
       fetch('http://localhost:3000/api/teddies/order', {
         method: 'POST',
@@ -114,7 +112,7 @@ function sendOrder() {
           'content-type': "application/json"
         },
         mode: "cors",
-        body: formulaireClient
+        body: formCustomer
         })
         .then(function (response) {
           return response.json()
@@ -128,14 +126,11 @@ function sendOrder() {
         .catch(function (err) {
           console.log("fetch Error");
         });
-    }
-    else{
+      }else{
       alert(" Une erreur est survenue votre panier est peux étre vide ou le formulaire n'a pas été correctement rempli!")
     };
   }
-  
   let envoiFormulaire = document.getElementById("sendForm");
-  
   envoiFormulaire.addEventListener('click', function (event) {
     event.preventDefault();
     sendOrder();
