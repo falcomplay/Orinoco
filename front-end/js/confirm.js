@@ -1,11 +1,10 @@
-
 const amountCommand = localStorage.getItem("amountSale");
 
 const numberSale = localStorage.getItem("numberSale");
 
-const summarySale = document.getElementById("summarySale")
-const recapDiv = document.createElement("div")
-recapDiv.classList.add("col-lg-6")
+const summarySale = document.getElementById("summarySale");
+const recapDiv = document.createElement("div");
+recapDiv.classList.add("col-lg-6");
 recapDiv.innerHTML = `
 <div class="card mb-4 mb-lg-0 justify-content-center border-Orinoco shadow">
 <h3 class="card-header text-center h5">Merci de votre confiance !</h3>
@@ -29,7 +28,7 @@ recapDiv.innerHTML = `
 <div class="card-footer">
     <a href="index.html" class="btn btn-Orinoco btn-block">revenir à l'accueil</a>
 </div>
-</div>`
-summarySale.appendChild(recapDiv)
-// Clear local.storage 
-localStorage.clear()
+</div>`;
+summarySale.appendChild(recapDiv);
+// Clear local.storage
+localStorage.clear();

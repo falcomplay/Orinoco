@@ -1,25 +1,24 @@
-basketCounter()
+basketCounter();
 
 fetch("http://localhost:3000/api/teddies")
-    //Formatting into json
-    .then(response => response.json())
-    //Create for each teddy a display
-    .then(productsList => {
-        for (let product of productsList){
-            let teddy = new Teddy(product)
-        display(teddy)
-        }
+	//Formatting into json
+	.then((response) => response.json())
+	//Create for each teddy a display
+	.then((productsList) => {
+		for (let product of productsList) {
+			let teddy = new Teddy(product);
+			display(teddy);
+		}
+	})
+	//Error case
+	.catch((err) => {
+		alert("Impossible de se connecter aux produits! " + err);
+	});
 
-    })
-    //Error case
-    .catch((err) => {
-        alert("Impossible de se connecter aux produits! " + err);
-      });
+const mainProduct = document.getElementById("main");
 
-const mainProduct = document.getElementById("main")
-
-const display = teddy => {
-    mainProduct.innerHTML += `            
+const display = (teddy) => {
+	mainProduct.innerHTML += `            
     <div class="col-12 col-md-6 col-lg-4 mb-5">
         <div class="card mb-4 mb-lg-0 rounded shadow bg_Orinoco">
             <img src="${teddy.imageUrl}" alt="${teddy.name}" class="card-img-top imgsize pt-3 px-3">
@@ -29,5 +28,5 @@ const display = teddy => {
             <a href="product.html?id=${teddy.id}" class="btn btn-Orinoco btn-block stretched-link">Voir ${teddy.name}</a>
             </div>
         </div>
-    </div>`
+    </div>`;
 };
